@@ -25,6 +25,7 @@ import (
 	"github.com/operator-framework/mock-extension-apiserver/pkg/apis/anything/v1alpha1"
 	generatedopenapi "github.com/operator-framework/mock-extension-apiserver/pkg/openapi"
 	anythingstorage "github.com/operator-framework/mock-extension-apiserver/pkg/storage/anything"
+	"github.com/operator-framework/mock-extension-apiserver/pkg/version"
 )
 
 var (
@@ -100,7 +101,7 @@ func (options *MockExtServerOptions) Config() (*MockExtServerConfig, error) {
 
 	// Split kinds
 	kinds := strings.Split(options.MockKinds, ",")
-	log.Warnf("len(kinds): %d", len(kinds))
+	log.Infof("len(kinds): %d", len(kinds))
 
 	return &MockExtServerConfig{
 		Config:           config,
@@ -199,6 +200,8 @@ type MockExtServerConfig struct {
 }
 
 func (config *MockExtServerConfig) Complete(informers informers.SharedInformerFactory) genericserver.CompletedConfig {
+	config.Version = version.VersionInfo()
+
 	// Add known types to scheme
 	for _, kind := range config.mockKinds {
 		gvk := config.mockGroupVersion.WithKind(kind)
