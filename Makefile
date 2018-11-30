@@ -39,6 +39,7 @@ build: clean $(CMDS)
 build-coverage: build_cmd=test -c -covermode=count -coverpkg ./pkg/...
 build-coverage: clean $(CMDS)
 
+$(CMDS): version_flags=-ldflags "-w -X $(PKG)/pkg/version.gitCommit=$(git rev-parse --short HEAD) -X $(PKG)/pkg/version.buildDate=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 $(CMDS):
 	CGO_ENABLED=0 go $(build_cmd) $(MOD_FLAGS) $(version_flags) -o $@ $(PKG)/cmd/$(shell basename $@);
 
