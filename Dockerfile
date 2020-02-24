@@ -8,6 +8,8 @@ FROM alpine:latest as mock-extension-apiserver
 LABEL stage=mock-extension-apiserver
 WORKDIR /
 COPY --from=builder mock-extension-apiserver/bin/mock-extension-apiserver /bin/mock-extension-apiserver
+RUN chmod g=u /
+USER 65534
 EXPOSE 8080
 EXPOSE 5443
 CMD ["/bin/mock-extension-apiserver"]
