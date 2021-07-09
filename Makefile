@@ -10,7 +10,7 @@ IMAGE_REPO := quay.io/coreos/olm
 IMAGE_TAG ?= "dev"
 KUBE_DEPS := api apiextensions-apiserver apimachinery code-generator kube-aggregator kubernetes
 KUBE_RELEASE := release-1.11
-MOD_FLAGS := $(shell (go version | grep -q 1.11) && echo -mod=vendor)
+MOD_FLAGS := -mod=vendor
 
 .PHONY: build test run clean vendor vendor-update \
 	coverage coverage-html e2e .FORCE
