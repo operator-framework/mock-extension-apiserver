@@ -141,7 +141,7 @@ func NewMockExtServerOptions(out, errOut io.Writer) *MockExtServerOptions {
 		Authorization:  genericoptions.NewDelegatingAuthorizationOptions(),
 		Features:       genericoptions.NewFeatureOptions(),
 
-		DisableAuthForTesting: false,
+		DisableAuthForTesting: true,
 		Debug:                 false,
 
 		StdOut: out,

@@ -69,3 +69,7 @@ require (
 	k8s.io/klog v0.0.0-20181102134211-b9b56d5dfc92 // indirect
 	k8s.io/kube-openapi v0.0.0-20181031203759-72693cb1fadd
 )
+
+replace (
+  bitbucket.org/ww/goautoneg => github.com/berlincount/go-autoneg v0.0.0-20120707110453-a547fc61f48d
+)
